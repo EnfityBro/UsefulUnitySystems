@@ -1,33 +1,55 @@
+using System;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(TextMeshProUGUI))]
 public class LanguageText : MonoBehaviour
 {
-    // static translation - it's more efficient, but when the player changes the language, it's necessary to restart the current game scene
-    /*
     [SerializeField] private string[] textArray;
+    private TextMeshProUGUI textField;
+    private const int defaultLanguageIndex = 0;
+
+    private static event Action OnLanguageChanged;
+
+    private void Awake()
+    {
+        textField = GetComponent<TextMeshProUGUI>();
+    }
+
+    private void OnEnable()
+    {
+        OnLanguageChanged += UpdateLanguageText;
+    }
 
     private void Start()
     {
-        if (!PlayerPrefs.HasKey("LanguageIndex")) { PlayerPrefs.SetInt("LanguageIndex", 0); } // set the default language index (for example, it's 0)
-        GetComponent<TextMeshProUGUI>().text = "" + textArray[PlayerPrefs.GetInt("LanguageIndex")];
+        if (!PlayerPrefs.HasKey("LanguageIndex"))
+            PlayerPrefs.SetInt("LanguageIndex", defaultLanguageIndex);
+
+        UpdateLanguageText();
     }
-    */
 
-
-
-    // dynamic translation - less effective if you have a huge number of texts, but more convenient for the player
-    // you can also add some "if()" construction in update(), which will act as a limiter for a more efficient result
-    /*
-    [SerializeField] private string[] textArray;
-
-    private void Start()
+    private void OnDisable()
     {
-        if (!PlayerPrefs.HasKey("LanguageIndex")) { PlayerPrefs.SetInt("LanguageIndex", 0); } // set the default language index (for example, it's 0)
+        OnLanguageChanged -= UpdateLanguageText;
     }
 
-    private void Update() => GetComponent<TextMeshProUGUI>().text = "" + textArray[PlayerPrefs.GetInt("LanguageIndex")];
-    */
+    private void UpdateLanguageText()
+    {
+        if ((textField != null) && (textArray != null))
+        {
+            int languageIndex = PlayerPrefs.GetInt("LanguageIndex");
+
+            if (languageIndex < textArray.Length)
+                textField.text = textArray[languageIndex];
+        }
+    }
+
+    public static void SetLanguage(int languageIndex)
+    {
+        PlayerPrefs.SetInt("LanguageIndex", languageIndex);
+        OnLanguageChanged?.Invoke();
+    }
 }
 
 
@@ -38,7 +60,7 @@ How to use:
 1. Attach this script to TextMeshPro game object.
 2. Add text elements to the "textArray" field in the Inspector window.
    (These elements are translations of the source text into other languages)
-3. When the player changes the language (for example, by clicking on a button in a menu), just change the language index in your script.
+3. When the player changes the language (for example, by clicking on a button in a menu), just call the SetLanguage() method.
 
 
 Documentation:
@@ -47,5 +69,6 @@ Documentation:
 
 Comment:
 - Instead of PlayerPrefs you can use another save/load system.
+- Instead of this class you can use more professional Localization package from Unity.
 
 */
