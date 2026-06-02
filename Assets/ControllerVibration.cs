@@ -1,13 +1,34 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class ControllerVibration : MonoBehaviour
+public static class ControllerVibration
 {
-    private InputDevice leftController;
-    private InputDevice rightController;
+    private static InputDevice leftController;
+    private static InputDevice rightController;
 
-    private void Start()
+    static ControllerVibration()
+    {
+        InitializeControllers();
+    }
+
+    [Flags]
+    public enum ControllersInfo
+    {
+        None = 0,
+        Left = 1 << 0,
+        Right = 1 << 1,
+        Both = Left | Right
+    }
+
+    /// <summary>
+    /// Initializing connected controllers.
+    /// </summary>
+    /// <remarks>
+    /// Call this method only when connecting or reconnecting controllers during the game.
+    /// </remarks>
+    public static void InitializeControllers()
     {
         // lists with all connected devices
         List<InputDevice> leftControllers = new List<InputDevice>();
@@ -17,14 +38,25 @@ public class ControllerVibration : MonoBehaviour
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Left | InputDeviceCharacteristics.Controller, leftControllers);
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller, rightControllers);
 
-        if (leftControllers.Count > 0) { leftController = leftControllers[0]; }
-        if (rightControllers.Count > 0) { rightController = rightControllers[0]; }
+        if (leftControllers.Count > 0)
+            leftController = leftControllers[0];
+        if (rightControllers.Count > 0)
+            rightController = rightControllers[0];
     }
 
-    public void SetControllerVibration(float intensity, float duration)
+    /// <summary>
+    /// Sets the vibration to a preset intensity and duration for the selected controllers.
+    /// </summary>
+    /// <remarks>
+    /// The parameters 'intensity' and 'duration' should be in range [0, 1].
+    /// </remarks>
+    public static void SetControllerVibration(float intensity, float duration, ControllersInfo controllersInfo)
     {
-        leftController.SendHapticImpulse(0, Mathf.Clamp01(intensity), Mathf.Clamp01(duration));
-        rightController.SendHapticImpulse(0, Mathf.Clamp01(intensity), Mathf.Clamp01(duration));
+        if (controllersInfo.HasFlag(ControllersInfo.Left) && (leftController != null))
+            leftController.SendHapticImpulse(0, Mathf.Clamp01(intensity), Mathf.Clamp01(duration));
+
+        if (controllersInfo.HasFlag(ControllersInfo.Right) && (rightController != null))
+            rightController.SendHapticImpulse(0, Mathf.Clamp01(intensity), Mathf.Clamp01(duration));
     }
 }
 
@@ -33,19 +65,10 @@ public class ControllerVibration : MonoBehaviour
 /*
 
 How to use:
-1. Just copy this code and use it in your script (or attach this script to any game object).
-2. Call the "SetControllerVibration" method to set the vibration for both controllers with selected intensity and duration.
-
-
-Documantation:
-- The "leftController" variable contains information about the connected left controller.
-- The "rightController" variable contains information about the connected right controller.
-- The "intensity" parameter is responsible for vibration intensity (must be in range [0, 1]).
-- The "duration" parameter is responsible for vibration duration (must be in range [0, 1]).
+1. Just copy this code into your project and call necessary methods.
 
 
 Comment:
-- You can modify this script to set the vibration for the left and right controllers separately.
 - This script has been tested on Oculus Quest 2 and Meta Quest 3 VR controllers.
 
 */
