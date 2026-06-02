@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NearestPointOfHit : MonoBehaviour
 {
-    // trigger with trigger, trigger with collider
+    // Trigger with trigger, trigger with collider
     /*
     private void OnTriggerEnter(Collider collider)
     {
@@ -10,7 +10,7 @@ public class NearestPointOfHit : MonoBehaviour
     }
     */
 
-    // collider with collider
+    // Collider with collider
     /*
     private void OnCollisionEnter(Collision collision)
     {
@@ -24,7 +24,7 @@ public class NearestPointOfHit : MonoBehaviour
 /*
 
 How to use:
-1. Just copy this code and use it in your script.
+1. Just copy the required method into your script.
 
 
 Comment:
