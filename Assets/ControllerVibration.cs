@@ -65,7 +65,7 @@ public static class ControllerVibration
 /*
 
 How to use:
-1. Just copy this code into your project and call necessary methods.
+1. Just copy this script into your project and call necessary methods.
 
 
 Comment:

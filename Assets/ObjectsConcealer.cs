@@ -31,7 +31,7 @@ public static class ObjectsConcealer
 /*
 
 How to use:
-1. Just copy this code into your project and call necessary methods.
+1. Copy this script into your project and call necessary methods.
 2. Create a layer that will mark the objects whose rendering you want to manage using the SetRenderingForGameObjectsByLayerIndex method.
 
 

@@ -19,7 +19,8 @@ public class Following : MonoBehaviour
 /*
 
 How to use:
-1. Attach this script to the game object that follows the target game object.
+1. Copy this script into your project.
+2. Attach this script to the game object that follows the target game object.
 
 
 Comment:

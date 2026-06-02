@@ -53,12 +53,13 @@ public class SliderSoundSystem : MonoBehaviour
 /*
 
 How to use:
-1. Attach this script to any game object.
-2. Add new element of audioTypes array and fill in all fields in the Inspector window:
+1. Copy this script into your project.
+2. Attach this script to any game object.
+3. Add new element of audioTypes array and fill in all fields in the Inspector window:
    3.1. In the 'audioSources' field, assign the AudioSource components corresponding to this type of game sound.
    3.2. In the 'slider' field, assign the Slider components that will be responsible for controlling the volume of this type of game sound.
    3.3. In the 'defaultVolumeValue' field, assign a default volume value for this type of game sound.
-3. Add SetSoundVolumeValues method in OnValueChanged event on each slider.
+4. Add SetSoundVolumeValues method in OnValueChanged event on each slider.
 
 
 Comment:

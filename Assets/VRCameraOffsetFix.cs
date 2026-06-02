@@ -23,11 +23,12 @@ public class VRCameraOffsetFix : MonoBehaviour
 /*
 
 How to use:
-1. Select the 'Not Specified' parameter in the 'Tracking Origin Mode' field in the 'XR Origin' component of the 'XR Origin Rig' object.
-2. Set the 'Camera Y Offset' parameter to 0 in the 'XR Origin' component of the 'XR Origin Rig' object.
-3. Attach this script to 'Camera Offset' object in your 'XR Origin Rig'.
-4. Set the Y position to 0 for the 'Camera Offset'.
-5. Set the Y position to 0 for the 'Main Camera'.
+1. Copy this script into your project.
+2. Select the 'Not Specified' parameter in the 'Tracking Origin Mode' field in the 'XR Origin' component of the 'XR Origin Rig' object.
+3. Set the 'Camera Y Offset' parameter to 0 in the 'XR Origin' component of the 'XR Origin Rig' object.
+4. Attach this script to 'Camera Offset' object in your 'XR Origin Rig'.
+5. Set the Y position to 0 for the 'Camera Offset'.
+6. Set the Y position to 0 for the 'Main Camera'.
 7. Manage the 'PlayerPrefs.GetFloat("VRCameraOffsetValue")' value from another script (for example, from the game settings script).
 
 

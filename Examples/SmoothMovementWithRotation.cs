@@ -18,7 +18,7 @@ public class SmoothMovementWithRotation : MonoBehaviour
 /*
 
 How to use:
-1. Attach this script to a moving game object.
+1. Attach this script to a moving game object or copy this logic into your script.
 2. In the 'target' field in the Inspector window, assign the target game object Transform.
 3. Regulate the 'moveSpeed' and 'rotationSpeed' fields for your needs.
 

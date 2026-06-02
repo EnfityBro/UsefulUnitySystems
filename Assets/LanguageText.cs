@@ -60,10 +60,11 @@ public class LanguageText : MonoBehaviour
 /*
 
 How to use:
-1. Attach this script to TextMeshPro game object.
-2. Add text elements to the "textArray" field in the Inspector window.
+1. Copy this script into your project.
+2. Attach this script to TextMeshPro game object.
+3. Add text elements to the "textArray" field in the Inspector window.
    (These elements are translations of the source text into other languages)
-3. When the player changes the language (for example, by clicking on a button in a menu), just call the SetLanguage() method.
+4. When the player changes the language (for example, by clicking on a button in a menu), just call the SetLanguage() method.
 
 
 Documentation:
