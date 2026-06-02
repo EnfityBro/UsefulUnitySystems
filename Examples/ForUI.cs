@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class ForMenus : MonoBehaviour
+public class ForUI
 {
-    public void ReloadCurrentScene() => UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
-
     public void QuitGame()
     {
         #if UNITY_EDITOR
@@ -13,7 +11,12 @@ public class ForMenus : MonoBehaviour
         #endif
     }
 
-    // mouse cursor disabling only in game build, it can be called from Awake() or Start() (for VR games)
+    /// <summary>
+    /// Mouse cursor disabling only in game build for VR games.
+    /// </summary>
+    /// <remarks>
+    /// It can be called from Awake() or Start().
+    /// </remarks>
     private void MouseCursorDisabling()
     {
         #if UNITY_EDITOR
@@ -21,6 +24,12 @@ public class ForMenus : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         #endif
+    }
+
+    public static void SetActiveMouseCursor(bool isActive)
+    {
+        Cursor.lockState = isActive ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = isActive;
     }
 }
 
