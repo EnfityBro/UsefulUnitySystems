@@ -39,6 +39,5 @@ Documentation:
 - The "frameCounter" variable stores the current number of frames.
 - The "fps" variable stores the current frames per second count.
 - The "timeCounter" variable is just a time counter.
-All variables values are updated every second.
 
 */
