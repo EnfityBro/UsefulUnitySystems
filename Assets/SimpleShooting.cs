@@ -8,8 +8,10 @@ public class SimpleShooting : MonoBehaviour
 
     private void Update()
     {
-        // add some condition according to your needs, for example: if (Input.GetMouseButton(0)), and uncomment the code below
-        // Instantiate(bulletPrefab, shotPlace.position, Quaternion.identity).GetComponent<Rigidbody>().velocity = shotPlace.forward * bulletSpeed;
+        if (Input.GetMouseButton(0))
+        {
+            Instantiate(bulletPrefab, shotPlace.position, Quaternion.identity).GetComponent<Rigidbody>().velocity = shotPlace.forward * bulletSpeed;
+        }
     }
 }
 
@@ -18,13 +20,14 @@ public class SimpleShooting : MonoBehaviour
 /*
 
 How to use:
-1. Just copy this code and use it in your script (or attach this script to any game object).
+1. Just copy this code and use it in your script.
+2. The bullet prefab must have a Rigidbody component.
 
 
 Documentation:
-- The "bulletPrefab" variable is a reference to the projectile game object.
-- The "shotPlace" variable is a reference to the place from which the projectile will appear.
-- The "bulletSpeed" variable is a float value for controlling the projectile speed.
+- The 'bulletPrefab' field is a reference to the projectile game object.
+- The 'shotPlace' field is a reference to the place from which the projectile will appear.
+- The 'bulletSpeed' field is a float value for controlling the projectile speed.
 
 
 Comment:
