@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObjectsConcealer
+public static class ObjectsConcealer
 {
     /// <summary>
     /// Sets the rendering ability of a game object with a specified layer index.
