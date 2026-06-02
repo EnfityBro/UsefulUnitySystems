@@ -23,7 +23,7 @@ public class AutoDeviceSimulator : MonoBehaviour
 
 How to use:
 1. Attach this script to any game object.
-2. In the "deviceSimulator" field in the "Inspector" window, assign the "XR Device Simulator" prefab from "Samples/XR Interaction Toolkit/_YOUR_VERSION_/XR Device Simulator/" folder.
+2. In the 'deviceSimulator' field in the Inspector window, assign the 'XR Device Simulator' prefab from 'Samples/XR Interaction Toolkit/_YOUR_VERSION_/XR Device Simulator/' folder.
 
 
 Comment:

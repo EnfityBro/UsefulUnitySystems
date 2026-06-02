@@ -45,6 +45,9 @@ public class LanguageText : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets translations for all texts in the language of the specified index.
+    /// </summary>
     public static void SetLanguage(int languageIndex)
     {
         PlayerPrefs.SetInt("LanguageIndex", languageIndex);
@@ -64,11 +67,11 @@ How to use:
 
 
 Documentation:
-- The "textArray" variable contains text translations into other languages.
+- The 'textArray' field contains text translations into other languages.
 
 
 Comment:
-- Instead of PlayerPrefs you can use another save/load system.
+- Instead of PlayerPrefs you can use another save/load system (see also InternalParams: https://github.com/EnfityBro/InternalParams).
 - Instead of this class you can use more professional Localization package from Unity.
 
 */

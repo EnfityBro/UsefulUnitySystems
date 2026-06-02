@@ -9,9 +9,15 @@ public class FPSCount : MonoBehaviour
     private void Update()
     {
         FPSCounter(ref fps);
-        // use the "fps" variable in some game logic further
+        // use the fps field's value further
     }
 
+    /// <summary>
+    /// Counts the number of frames per second and writes the result in an int field.
+    /// </summary>
+    /// <remarks>
+    /// Should be called in Update base method.
+    /// </remarks>
     private void FPSCounter(ref int fps)
     {
         frameCounter++;
@@ -31,13 +37,13 @@ public class FPSCount : MonoBehaviour
 /*
 
 How to use:
-1. Just copy the "FPSCounter" method with the necessary variables and use it in your script (or attach this script to any game object).
-2. The "FPSCounter" method should be called in "Update()".
+1. Just copy the FPSCounter method with the necessary fields and use it in your script.
+2. The FPSCounter method should be called in Update base method.
 
 
 Documentation:
-- The "frameCounter" variable stores the current number of frames.
-- The "fps" variable stores the current frames per second count.
-- The "timeCounter" variable is just a time counter.
+- The frameCounter field stores the current number of frames.
+- The fps field stores the current frames per second count.
+- The timeCounter field is just a time counter.
 
 */

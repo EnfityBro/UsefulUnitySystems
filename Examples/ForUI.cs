@@ -15,7 +15,7 @@ public class ForUI
     /// Mouse cursor disabling only in game build for VR games.
     /// </summary>
     /// <remarks>
-    /// It can be called from Awake() or Start().
+    /// It can be called from Awake or Start base methods.
     /// </remarks>
     private void MouseCursorDisabling()
     {

@@ -23,7 +23,7 @@ How to use:
 
 
 Comment:
-- If you're sure about the target game object (that it's active and on scene all the time), you can remove the "if()" construct for more efficiency.
+- If you're sure about the target game object (that it's active and on scene all the time), you can remove the 'if()' construct for more efficiency.
 - You can modify this script for your needs.
 
 */

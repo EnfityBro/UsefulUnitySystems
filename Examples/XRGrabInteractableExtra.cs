@@ -40,7 +40,7 @@ public class XRGrabInteractableExtra : XRGrabInteractable
 
 How to use:
 1. Use this override logic in your script inherited from the XRGrabInteractable class.
-2. Your script should be used instead of the original "XR Grab Interactable" component on a game object that can be grabbed by the player.
+2. Your script should be used instead of the original XR Grab Interactable component on a game object that can be grabbed by the player.
 
 
 Comment:
