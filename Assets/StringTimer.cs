@@ -1,10 +1,7 @@
-/// <summary>
-/// Seconds converter to various string time formats.
-/// </summary>
-public class StringTimer
+public static class StringTimer
 {
     /// <summary>
-    /// Converts seconds to a string like mm:ss and hh:mm:ss if the seconds count is more than 3600.
+    /// Converts seconds to a string like 'mm:ss' and 'hh:mm:ss' if the seconds count is more than 3600.
     /// </summary>
     public static string ElectronicFormat(int time)
     {
@@ -84,7 +81,15 @@ public class StringTimer
     }
 
     /// <summary>
-    /// Converts seconds to a string like _s, _m _s if the seconds count is more than 60 and _h _m _s if the seconds count is more than 3600.
+    /// Converts seconds to a string like 'mm:ss' and 'hh:mm:ss' if the seconds count is more than 3600.
+    /// </summary>
+    public static string ElectronicFormat(float time)
+    {
+        return ElectronicFormat((int)time);
+    }
+
+    /// <summary>
+    /// Converts seconds to a string like '_s', '_m _s' if the seconds count is more than 60 and '_h _m _s' if the seconds count is more than 3600.
     /// </summary>
     public static string TextFormat(int time)
     {
@@ -129,6 +134,14 @@ public class StringTimer
 
         return displayedTime;
     }
+
+    /// <summary>
+    /// Converts seconds to a string like '_s', '_m _s' if the seconds count is more than 60 and '_h _m _s' if the seconds count is more than 3600.
+    /// </summary>
+    public static string TextFormat(float time)
+    {
+        return TextFormat((int)time);
+    }
 }
 
 
@@ -136,12 +149,7 @@ public class StringTimer
 /*
 
 How to use:
-1. Just call the public static methods "ElectronicFormat" or "TextFormat" from your script.
-
-
-Documentation:
-- The integer parameter "time" is the displayed time, which will be converted to the "string time" format.
-  You can also pass the float parameter just by using: (int)someFloatValue.
+1. Just copy this code into your project and call necessary methods.
 
 
 Comment:
