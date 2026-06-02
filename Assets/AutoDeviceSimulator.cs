@@ -4,11 +4,13 @@ public class AutoDeviceSimulator : MonoBehaviour
 {
     #if UNITY_EDITOR
     [SerializeField] private GameObject deviceSimulator;
+    private static bool isInitialized;
 
     private void Awake()
     {
-        if (GameObject.Find("XR Device Simulator(Clone)") == null)
+        if (!isInitialized)
         {
+            isInitialized = true;
             DontDestroyOnLoad(Instantiate(deviceSimulator));
         }
     }
@@ -22,10 +24,6 @@ public class AutoDeviceSimulator : MonoBehaviour
 How to use:
 1. Attach this script to any game object.
 2. In the "deviceSimulator" field in the "Inspector" window, assign the "XR Device Simulator" prefab from "Samples/XR Interaction Toolkit/_YOUR_VERSION_/XR Device Simulator/" folder.
-
-
-Documentation:
-- The "deviceSimulator" variable is a reference to the "XR Device Simulator" prefab.
 
 
 Comment:
