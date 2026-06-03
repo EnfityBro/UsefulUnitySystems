@@ -7,6 +7,8 @@
 
 
 ## Assets list
+- **AndroidFeatures** - useful features for Android games.
+
 - **AutoDeviceSimulator** - this script automatically creates a XR Device Simulator object on your game scene only in Unity editor mode (for AR/MR/VR games).
 
 - **ControllerVibration** - this script allows you to use the controller vibration in the game (also for VR controllers).
