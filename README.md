@@ -13,6 +13,8 @@
 
 - **ControllerVibration** - this script allows you to use the controller vibration in the game (also for VR controllers).
 
+- **Converter** - useful methods for converting different values.
+
 - **Following** - with this script, you can make one game object repeat the position and rotation of another game object.
 
 - **GraphicRaycasterWithLock** - using this script instead of the standard GraphicRaycaster component on World Space type Canvases allows you to disable unnecessary mouse processing if it's disabled in the game. This is especially useful in VR games, where interaction takes place through the rays of the controllers.
