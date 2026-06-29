@@ -9,7 +9,7 @@ public class LanguageText : MonoBehaviour
     private TextMeshProUGUI textField;
     private const int defaultLanguageIndex = 0;
 
-    private static event Action OnLanguageChanged;
+    private static event Action<int> OnLanguageChanged;
 
     private void Awake()
     {
@@ -26,23 +26,12 @@ public class LanguageText : MonoBehaviour
         if (!PlayerPrefs.HasKey("LanguageIndex"))
             PlayerPrefs.SetInt("LanguageIndex", defaultLanguageIndex);
 
-        UpdateLanguageText();
+        UpdateLanguageText(PlayerPrefs.GetInt("LanguageIndex"));
     }
 
     private void OnDisable()
     {
         OnLanguageChanged -= UpdateLanguageText;
-    }
-
-    private void UpdateLanguageText()
-    {
-        if ((textField != null) && (textArray != null))
-        {
-            int languageIndex = PlayerPrefs.GetInt("LanguageIndex");
-
-            if (languageIndex < textArray.Length)
-                textField.text = textArray[languageIndex];
-        }
     }
 
     /// <summary>
@@ -51,7 +40,20 @@ public class LanguageText : MonoBehaviour
     public static void SetLanguage(int languageIndex)
     {
         PlayerPrefs.SetInt("LanguageIndex", languageIndex);
-        OnLanguageChanged?.Invoke();
+        OnLanguageChanged?.Invoke(languageIndex);
+    }
+
+    private void UpdateLanguageText(int languageIndex)
+    {
+        if (textArray.Length == 0)
+        {
+            Debug.LogError($"The '{nameof(textArray)}' field is an empty array in the {gameObject.name} text. " +
+                $"The language won't be changed on this text.");
+            return;
+        }
+
+        if (languageIndex < textArray.Length)
+            textField.text = textArray[languageIndex];
     }
 }
 
