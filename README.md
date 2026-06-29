@@ -21,7 +21,11 @@
 
 - **LanguageText** - this script allows you to create a simple text translation system for other languages in your game.
 
+- **ObjectPool** - a class for managing an objects pool. Supports working with component classes only.
+
 - **ObjectsConcealer** - contains the **SetRenderingForGameObjectsByLayerIndex** which sets the rendering ability of a game object with a specified layer index.
+
+- **ServiceContainer** - the service container that provides access to work with game services. Addition to the DI architecture of the project.
 
 - **SliderSoundSystem** - this system allows you to control the volume of each type of game sounds. Each type of game sound can contain multiple AudioSources.
 
