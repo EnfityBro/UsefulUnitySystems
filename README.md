@@ -9,7 +9,7 @@
 ## Assets list
 - **AndroidFeatures** - useful features for Android games.
 
-- **ARRaycastAimController** - this script allows you to control the game object attached to the scanned plane through the movements of the device.
+- **ARRaycastAimController** - this script allows you to control the game object attached to the scanned AR plane through the movements of the device (for AR games only).
 
 - **AutoDeviceSimulator** - this script automatically creates a XR Device Simulator object on your game scene only in Unity editor mode (for AR/MR/VR games).
 
@@ -37,7 +37,7 @@
 
 - **TryGetUniqueValue** - this method tries to minimize duplication of a random int value from the range [minValue, maxValue).
 
-- **VRCameraOffsetFix** - this script allows you to quickly solve the problem with the incorrect VR camera offset in the game build (this problem was noticed on Oculus Quest 2 due to incorrect settings of the play zone).
+- **VRCameraOffsetFix** - this script allows you to quickly solve the problem with the incorrect VR camera offset in the game build (this problem was noticed on Oculus Quest 2 due to incorrect settings of the play zone) (for VR games).
 
 
 ## Examples list
@@ -49,7 +49,7 @@
 
 - **SimpleShooting** - this is the code for a simple physical shooting system for your game.
 
-- **XRGrabInteractableExtra** - use this script instead of the original "XR Grab Interactable" component to control the "grab/drop" and "HoverEnter/HoverExit" processes.
+- **XRGrabInteractableExtra** - use this script instead of the original "XR Grab Interactable" component to control the "grab/drop" and "HoverEnter/HoverExit" processes (for VR games).
 
 
 ## Contact me
