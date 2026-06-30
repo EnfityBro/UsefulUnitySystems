@@ -1,20 +1,23 @@
 using System.Collections;
 using UnityEngine;
 
-public class VRCameraOffsetFix : MonoBehaviour
+namespace Enfity.UsefulUnitySystems
 {
-    private void Start()
+    public class VRCameraOffsetFix : MonoBehaviour
     {
-        StartCoroutine(CameraOffsetDelay());
-    }
+        private void Start()
+        {
+            StartCoroutine(CameraOffsetDelay());
+        }
 
-    private IEnumerator CameraOffsetDelay()
-    {
-        yield return new WaitForSeconds(0.15f);
+        private IEnumerator CameraOffsetDelay()
+        {
+            yield return new WaitForSeconds(0.15f);
 
-        transform.localPosition = new Vector3(0, PlayerPrefs.GetFloat("VRCameraOffsetValue"), 0);
+            transform.localPosition = new Vector3(0, PlayerPrefs.GetFloat("VRCameraOffsetValue"), 0);
 
-        yield break;
+            yield break;
+        }
     }
 }
 

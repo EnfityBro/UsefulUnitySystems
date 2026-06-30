@@ -1,85 +1,88 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool<T> where T : Component
+namespace Enfity.UsefulUnitySystems
 {
-    private readonly T prefab;
-    private readonly Transform parent;
-    private readonly Queue<T> pool = new Queue<T>();
-
-    private readonly int initialSize;
-
-    public ObjectPool(T prefab, int initialSize = 8, Transform parent = null)
+    public class ObjectPool<T> where T : Component
     {
-        this.prefab = prefab;
-        this.parent = parent;
-        this.initialSize = initialSize;
+        private readonly T prefab;
+        private readonly Transform parent;
+        private readonly Queue<T> pool = new Queue<T>();
 
-        Prepare();
-    }
+        private readonly int initialSize;
 
-    public ObjectPool(T prefab, Transform parent, int initialSize = 8)
-    {
-        this.prefab = prefab;
-        this.parent = parent;
-        this.initialSize = initialSize;
-
-        Prepare();
-    }
-
-    /// <summary>
-    /// Gets the object from object pool at specified position and rotation.
-    /// </summary>
-    public T Get(Vector3 position, Quaternion rotation)
-    {
-        if (pool.Count == 0)
+        public ObjectPool(T prefab, int initialSize = 8, Transform parent = null)
         {
-            T newObj = Object.Instantiate(prefab, parent);
-            newObj.gameObject.SetActive(false);
-            pool.Enqueue(newObj);
+            this.prefab = prefab;
+            this.parent = parent;
+            this.initialSize = initialSize;
+
+            Prepare();
         }
 
-        T obj = pool.Dequeue();
-        obj.transform.position = position;
-        obj.transform.rotation = rotation;
-        obj.gameObject.SetActive(true);
-
-        return obj;
-    }
-
-    /// <summary>
-    /// Returns the specified object to the object pool.
-    /// </summary>
-    public void Return(T obj)
-    {
-        if (obj != null)
+        public ObjectPool(T prefab, Transform parent, int initialSize = 8)
         {
-            obj.gameObject.SetActive(false);
-            pool.Enqueue(obj);
+            this.prefab = prefab;
+            this.parent = parent;
+            this.initialSize = initialSize;
+
+            Prepare();
         }
-    }
 
-    /// <summary>
-    /// Clears the object pool.
-    /// </summary>
-    public void Clear()
-    {
-        while (pool.Count > 0)
+        /// <summary>
+        /// Gets the object from object pool at specified position and rotation.
+        /// </summary>
+        public T Get(Vector3 position, Quaternion rotation)
         {
+            if (pool.Count == 0)
+            {
+                T newObj = Object.Instantiate(prefab, parent);
+                newObj.gameObject.SetActive(false);
+                pool.Enqueue(newObj);
+            }
+
             T obj = pool.Dequeue();
+            obj.transform.position = position;
+            obj.transform.rotation = rotation;
+            obj.gameObject.SetActive(true);
 
-            if (obj != null)
-                Object.Destroy(obj.gameObject);
+            return obj;
         }
-    }
 
-    private void Prepare()
-    {
-        for (int i = 0; i < initialSize; i++)
+        /// <summary>
+        /// Returns the specified object to the object pool.
+        /// </summary>
+        public void Return(T obj)
         {
-            T obj = Object.Instantiate(prefab, parent);
-            obj.gameObject.SetActive(false);
-            pool.Enqueue(obj);
+            if (obj != null)
+            {
+                obj.gameObject.SetActive(false);
+                pool.Enqueue(obj);
+            }
+        }
+
+        /// <summary>
+        /// Clears the object pool.
+        /// </summary>
+        public void Clear()
+        {
+            while (pool.Count > 0)
+            {
+                T obj = pool.Dequeue();
+
+                if (obj != null)
+                    Object.Destroy(obj.gameObject);
+            }
+        }
+
+        private void Prepare()
+        {
+            for (int i = 0; i < initialSize; i++)
+            {
+                T obj = Object.Instantiate(prefab, parent);
+                obj.gameObject.SetActive(false);
+                pool.Enqueue(obj);
+            }
         }
     }
 }

@@ -3,14 +3,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class GraphicRaycasterWithLock : GraphicRaycaster
+namespace Enfity.UsefulUnitySystems
 {
-    public override void Raycast(PointerEventData eventData, List<RaycastResult> resultAppendList)
+    public class GraphicRaycasterWithLock : GraphicRaycaster
     {
-        if (Cursor.lockState == CursorLockMode.Locked)
-            return;
+        public override void Raycast(PointerEventData eventData, List<RaycastResult> resultAppendList)
+        {
+            if (Cursor.lockState == CursorLockMode.Locked)
+                return;
 
-        base.Raycast(eventData, resultAppendList);
+            base.Raycast(eventData, resultAppendList);
+        }
     }
 }
 

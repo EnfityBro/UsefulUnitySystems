@@ -1,22 +1,25 @@
-public static class TryGetUniqueValue
+namespace Enfity.UsefulUnitySystems
 {
-    /// <summary>
-    /// Tries to minimize duplication of a random int value from the range [minValue, maxValue).
-    /// </summary>
-    public static int TryGetUniqueRandomValue(ref int previousRandomValue, int minValue, int maxValue)
+    public static class TryGetUniqueValue
     {
-        int currentRandomValue = UnityEngine.Random.Range(minValue, maxValue);
+        /// <summary>
+        /// Tries to minimize duplication of a random int value from the range [minValue, maxValue).
+        /// </summary>
+        public static int TryGetUniqueRandomValue(ref int previousRandomValue, int minValue, int maxValue)
+        {
+            int currentRandomValue = UnityEngine.Random.Range(minValue, maxValue);
 
-        if (currentRandomValue != previousRandomValue)
-        {
-            previousRandomValue = currentRandomValue;
-            return currentRandomValue;
-        }
-        else
-        {
-            currentRandomValue = UnityEngine.Random.Range(minValue, maxValue);
-            previousRandomValue = currentRandomValue;
-            return currentRandomValue;
+            if (currentRandomValue != previousRandomValue)
+            {
+                previousRandomValue = currentRandomValue;
+                return currentRandomValue;
+            }
+            else
+            {
+                currentRandomValue = UnityEngine.Random.Range(minValue, maxValue);
+                previousRandomValue = currentRandomValue;
+                return currentRandomValue;
+            }
         }
     }
 }

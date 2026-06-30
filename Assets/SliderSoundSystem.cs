@@ -3,48 +3,51 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
 
-public class SliderSoundSystem : MonoBehaviour
+namespace Enfity.UsefulUnitySystems
 {
-    [SerializeField] private List<AudioType> audioTypes;
-
-    private void Start()
+    public class SliderSoundSystem : MonoBehaviour
     {
-        SetUpSoundSlidersValues();
-    }
+        [SerializeField] private List<AudioType> audioTypes;
 
-    private void SetUpSoundSlidersValues()
-    {
-        for (int i = 0; i < audioTypes.Count; i++)
+        private void Start()
         {
-            if (PlayerPrefs.HasKey($"SoundType{i}Volume"))
-                audioTypes[i].slider.value = PlayerPrefs.GetFloat($"SoundType{i}Volume");
-            else
-                audioTypes[i].slider.value = audioTypes[i].defaultVolumeValue;
+            SetUpSoundSlidersValues();
         }
 
-        SetSoundVolumeValues();
-    }
-
-    /// <summary>
-    /// Sets the current volume for all types of sounds.
-    /// </summary>
-    public void SetSoundVolumeValues()
-    {
-        for (int i = 0; i < audioTypes.Count; i++)
+        private void SetUpSoundSlidersValues()
         {
-            for (int j = 0; j < audioTypes[i].audioSources.Length; j++)
-                audioTypes[i].audioSources[j].volume = audioTypes[i].slider.value;
+            for (int i = 0; i < audioTypes.Count; i++)
+            {
+                if (PlayerPrefs.HasKey($"SoundType{i}Volume"))
+                    audioTypes[i].slider.value = PlayerPrefs.GetFloat($"SoundType{i}Volume");
+                else
+                    audioTypes[i].slider.value = audioTypes[i].defaultVolumeValue;
+            }
 
-            PlayerPrefs.SetFloat($"SoundType{i}Volume", audioTypes[i].slider.value);
+            SetSoundVolumeValues();
         }
-    }
 
-    [Serializable]
-    public class AudioType
-    {
-        public AudioSource[] audioSources;
-        public Slider slider;
-        public float defaultVolumeValue;
+        /// <summary>
+        /// Sets the current volume for all types of sounds.
+        /// </summary>
+        public void SetSoundVolumeValues()
+        {
+            for (int i = 0; i < audioTypes.Count; i++)
+            {
+                for (int j = 0; j < audioTypes[i].audioSources.Length; j++)
+                    audioTypes[i].audioSources[j].volume = audioTypes[i].slider.value;
+
+                PlayerPrefs.SetFloat($"SoundType{i}Volume", audioTypes[i].slider.value);
+            }
+        }
+
+        [Serializable]
+        public class AudioType
+        {
+            public AudioSource[] audioSources;
+            public Slider slider;
+            public float defaultVolumeValue;
+        }
     }
 }
 

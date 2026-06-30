@@ -2,54 +2,57 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-/// <summary>
-/// The service container that provides access to work with game services.
-/// </summary>
-public sealed class ServiceContainer
+namespace Enfity.UsefulUnitySystems
 {
-    private readonly Dictionary<Type, object> services = new Dictionary<Type, object>();
-
     /// <summary>
-    /// Registers the game service.
+    /// The service container that provides access to work with game services.
     /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    public void RegisterService<T>(T service) where T : class
+    public sealed class ServiceContainer
     {
-        if (service == null)
+        private readonly Dictionary<Type, object> services = new Dictionary<Type, object>();
+
+        /// <summary>
+        /// Registers the game service.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception>
+        public void RegisterService<T>(T service) where T : class
         {
-            throw new ArgumentNullException($"Attempt to register a null service.");
+            if (service == null)
+            {
+                throw new ArgumentNullException($"Attempt to register a null service.");
+            }
+            else if (services.ContainsKey(typeof(T)))
+            {
+                Debug.LogWarning($"The {typeof(T).Name} service is already registered.");
+                return;
+            }
+
+            services[typeof(T)] = service;
         }
-        else if (services.ContainsKey(typeof(T)))
+
+        /// <summary>
+        /// Returns an instance of a service of a type T.
+        /// </summary>
+        /// <exception cref="InvalidOperationException"></exception>
+        public T GetService<T>() where T : class
         {
-            Debug.LogWarning($"The {typeof(T).Name} service is already registered.");
-            return;
+            if (services.TryGetValue(typeof(T), out var service))
+                return (T)service;
+
+            throw new InvalidOperationException($"The {typeof(T).Name} service is not registered.");
         }
 
-        services[typeof(T)] = service;
-    }
+        /// <summary>
+        /// Unregisters the game service.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception>
+        public void UnregisterService<T>(T service) where T : class
+        {
+            if (service == null)
+                throw new ArgumentNullException($"Attempt to unregister a null service.");
 
-    /// <summary>
-    /// Returns an instance of a service of a type T.
-    /// </summary>
-    /// <exception cref="InvalidOperationException"></exception>
-    public T GetService<T>() where T : class
-    {
-        if (services.TryGetValue(typeof(T), out var service))
-            return (T)service;
-
-        throw new InvalidOperationException($"The {typeof(T).Name} service is not registered.");
-    }
-
-    /// <summary>
-    /// Unregisters the game service.
-    /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    public void UnregisterService<T>(T service) where T : class
-    {
-        if (service == null)
-            throw new ArgumentNullException($"Attempt to unregister a null service.");
-
-        services.Remove(typeof(T));
+            services.Remove(typeof(T));
+        }
     }
 }
 

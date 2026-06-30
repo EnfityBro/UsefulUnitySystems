@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class Following : MonoBehaviour
+namespace Enfity.UsefulUnitySystems
 {
-    [SerializeField] private Transform target;
-
-    private void Update()
+    public class Following : MonoBehaviour
     {
-        if ((target.gameObject != null) && target.gameObject.activeSelf)
+        [SerializeField] private Transform target;
+
+        private void Update()
         {
-            transform.position = target.position;
-            transform.rotation = target.rotation;
+            if ((target.gameObject != null) && target.gameObject.activeSelf)
+            {
+                transform.position = target.position;
+                transform.rotation = target.rotation;
+            }
         }
     }
 }

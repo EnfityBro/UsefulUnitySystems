@@ -1,42 +1,45 @@
 using UnityEngine;
 
-public static class ObjectsConcealer
+namespace Enfity.UsefulUnitySystems
 {
-#if UNITY_6000_0_OR_NEWER
-    /// <summary>
-    /// Sets the rendering ability of a game object with a specified layer index.
-    /// </summary>
-    /// <remarks>
-    /// Don't call this method in Update like methods.
-    /// </remarks>
-    public static void SetRenderingForGameObjectsByLayerIndex(bool isEnabled, int layerIndex, FindObjectsInactive findObjectsInactive = FindObjectsInactive.Exclude)
+    public static class ObjectsConcealer
     {
-        MeshRenderer[] allMeshRenderers = GameObject.FindObjectsByType<MeshRenderer>(findObjectsInactive, FindObjectsSortMode.None);
-
-        foreach (MeshRenderer currentMeshRenderer in allMeshRenderers)
+    #if UNITY_6000_0_OR_NEWER
+        /// <summary>
+        /// Sets the rendering ability of a game object with a specified layer index.
+        /// </summary>
+        /// <remarks>
+        /// Don't call this method in Update like methods.
+        /// </remarks>
+        public static void SetRenderingForGameObjectsByLayerIndex(bool isEnabled, int layerIndex, FindObjectsInactive findObjectsInactive = FindObjectsInactive.Exclude)
         {
-            if (currentMeshRenderer.gameObject.layer == layerIndex)
-                currentMeshRenderer.enabled = isEnabled;
-        }
-    }
-#else
-    /// <summary>
-    /// Sets the rendering ability of a game object with a specified layer index.
-    /// </summary>
-    /// <remarks>
-    /// Don't call this method in Update like methods.
-    /// </remarks>
-    public static void SetRenderingForGameObjectsByLayerIndex(bool isEnabled, int layerIndex)
-    {
-        MeshRenderer[] allMeshRenderers = GameObject.FindObjectsOfType<MeshRenderer>();
+            MeshRenderer[] allMeshRenderers = GameObject.FindObjectsByType<MeshRenderer>(findObjectsInactive, FindObjectsSortMode.None);
 
-        foreach (MeshRenderer currentMeshRenderer in allMeshRenderers)
-        {
-            if (currentMeshRenderer.gameObject.layer == layerIndex)
-                currentMeshRenderer.enabled = isEnabled;
+            foreach (MeshRenderer currentMeshRenderer in allMeshRenderers)
+            {
+                if (currentMeshRenderer.gameObject.layer == layerIndex)
+                    currentMeshRenderer.enabled = isEnabled;
+            }
         }
+    #else
+        /// <summary>
+        /// Sets the rendering ability of a game object with a specified layer index.
+        /// </summary>
+        /// <remarks>
+        /// Don't call this method in Update like methods.
+        /// </remarks>
+        public static void SetRenderingForGameObjectsByLayerIndex(bool isEnabled, int layerIndex)
+        {
+            MeshRenderer[] allMeshRenderers = GameObject.FindObjectsOfType<MeshRenderer>();
+
+            foreach (MeshRenderer currentMeshRenderer in allMeshRenderers)
+            {
+                if (currentMeshRenderer.gameObject.layer == layerIndex)
+                    currentMeshRenderer.enabled = isEnabled;
+            }
+        }
+    #endif
     }
-#endif
 }
 
 

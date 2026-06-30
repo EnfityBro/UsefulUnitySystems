@@ -1,35 +1,38 @@
 using UnityEngine;
 
-public static class AndroidFeatures
+namespace Enfity.UsefulUnitySystems
 {
-    public enum ToastLength
+    public static class AndroidFeatures
     {
-        Short,
-        Long
-    }
+        public enum ToastLength
+        {
+            Short,
+            Long
+        }
 
-    /// <summary>
-    /// Shows a toast message of the specified length.
-    /// </summary>
-    public static void ShowToast(string message, ToastLength toastLength)
-    {
-        #if UNITY_ANDROID && (!UNITY_EDITOR)
-            AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            AndroidJavaClass toastClass = new AndroidJavaClass("android.widget.Toast");
+        /// <summary>
+        /// Shows a toast message of the specified length.
+        /// </summary>
+        public static void ShowToast(string message, ToastLength toastLength)
+        {
+            #if UNITY_ANDROID && (!UNITY_EDITOR)
+                AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+                AndroidJavaClass toastClass = new AndroidJavaClass("android.widget.Toast");
 
-            int length = toastLength == ToastLength.Short
-                ? toastClass.GetStatic<int>("LENGTH_SHORT")
-                : toastClass.GetStatic<int>("LENGTH_LONG");
+                int length = toastLength == ToastLength.Short
+                    ? toastClass.GetStatic<int>("LENGTH_SHORT")
+                    : toastClass.GetStatic<int>("LENGTH_LONG");
 
-            currentActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
-            {
-                AndroidJavaObject toastObject = toastClass.CallStatic<AndroidJavaObject>("makeText", currentActivity, message, length);
-                toastObject.Call("show");
-            }));
-        #else
-            Debug.Log($"Toast message: {message}, toast length = {toastLength}");
-        #endif
+                currentActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
+                {
+                    AndroidJavaObject toastObject = toastClass.CallStatic<AndroidJavaObject>("makeText", currentActivity, message, length);
+                    toastObject.Call("show");
+                }));
+            #else
+                Debug.Log($"Toast message: {message}, toast length = {toastLength}");
+            #endif
+        }
     }
 }
 

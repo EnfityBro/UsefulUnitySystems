@@ -1,20 +1,23 @@
 using UnityEngine;
 
-public class AutoDeviceSimulator : MonoBehaviour
+namespace Enfity.UsefulUnitySystems
 {
-    #if UNITY_EDITOR
-    [SerializeField] private GameObject deviceSimulator;
-    private static bool isInitialized;
-
-    private void Awake()
+    public class AutoDeviceSimulator : MonoBehaviour
     {
-        if (!isInitialized)
-        {
-            isInitialized = true;
-            DontDestroyOnLoad(Instantiate(deviceSimulator));
-        }
+        #if UNITY_EDITOR
+            [SerializeField] private GameObject deviceSimulator;
+            private static bool isInitialized;
+
+            private void Awake()
+            {
+                if (!isInitialized)
+                {
+                    isInitialized = true;
+                    DontDestroyOnLoad(Instantiate(deviceSimulator));
+                }
+            }
+        #endif
     }
-    #endif
 }
 
 

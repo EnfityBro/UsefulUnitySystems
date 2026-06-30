@@ -1,146 +1,149 @@
-public static class StringTimer
+namespace Enfity.UsefulUnitySystems
 {
-    /// <summary>
-    /// Converts seconds to a string like 'mm:ss' and 'hh:mm:ss' if the seconds count is more than 3600.
-    /// </summary>
-    public static string ElectronicFormat(int time)
+    public static class StringTimer
     {
-        string displayedTime = "";
+        /// <summary>
+        /// Converts seconds to a string like 'mm:ss' and 'hh:mm:ss' if the seconds count is more than 3600.
+        /// </summary>
+        public static string ElectronicFormat(int time)
+        {
+            string displayedTime = "";
 
-        if (time < 60)
-        {
-            if (time < 10)
-                displayedTime = $"00:0{time}";
-            else
-                displayedTime = $"00:{time}";
-        }
-        else if ((time >= 60) && (time < 3600))
-        {
-            if ((int)(time / 60.0) < 10)
+            if (time < 60)
             {
-                if (time % 60 < 10)
-                    displayedTime = $"0{(int)(time / 60)}:0{time % 60}";
+                if (time < 10)
+                    displayedTime = $"00:0{time}";
                 else
-                    displayedTime = $"0{(int)(time / 60)}:{time % 60}";
+                    displayedTime = $"00:{time}";
             }
-            else
+            else if ((time >= 60) && (time < 3600))
             {
-                if (time % 60 < 10)
-                    displayedTime = $"{(int)(time / 60)}:0{time % 60}";
-                else
-                    displayedTime = $"{(int)(time / 60)}:{time % 60}";
-            }
-        }
-        else if (time >= 3600)
-        {
-            int hour = 0;
-
-            if (time / 3600 > 1)
-            {
-                hour = ((int)time / 3600) - 1;
-                time -= (3600 * hour);
-            }
-
-            if (hour + 1 < 10)
-            {
-                if ((int)((time - 3600) / 60) < 10)
+                if ((int)(time / 60.0) < 10)
                 {
                     if (time % 60 < 10)
-                        displayedTime = $"0{hour + 1}:0{(int)((time - 3600) / 60)}:0{time % 60}";
+                        displayedTime = $"0{(int)(time / 60)}:0{time % 60}";
                     else
-                        displayedTime = $"0{hour + 1}:0{(int)((time - 3600) / 60)}:{time % 60}";
+                        displayedTime = $"0{(int)(time / 60)}:{time % 60}";
                 }
                 else
                 {
                     if (time % 60 < 10)
-                        displayedTime = $"0{hour + 1}:{(int)((time - 3600) / 60)}:0{time % 60}";
+                        displayedTime = $"{(int)(time / 60)}:0{time % 60}";
                     else
-                        displayedTime = $"0{hour + 1}:{(int)((time - 3600) / 60)}:{time % 60}";
+                        displayedTime = $"{(int)(time / 60)}:{time % 60}";
                 }
             }
-            else
+            else if (time >= 3600)
             {
-                if ((int)((time - 3600) / 60) < 10)
+                int hour = 0;
+
+                if (time / 3600 > 1)
                 {
-                    if (time % 60 < 10)
-                        displayedTime = $"{hour + 1}:0{(int)((time - 3600) / 60)}:0{time % 60}";
+                    hour = ((int)time / 3600) - 1;
+                    time -= (3600 * hour);
+                }
+
+                if (hour + 1 < 10)
+                {
+                    if ((int)((time - 3600) / 60) < 10)
+                    {
+                        if (time % 60 < 10)
+                            displayedTime = $"0{hour + 1}:0{(int)((time - 3600) / 60)}:0{time % 60}";
+                        else
+                            displayedTime = $"0{hour + 1}:0{(int)((time - 3600) / 60)}:{time % 60}";
+                    }
                     else
-                        displayedTime = $"{hour + 1}:0{(int)((time - 3600) / 60)}:{time % 60}";
+                    {
+                        if (time % 60 < 10)
+                            displayedTime = $"0{hour + 1}:{(int)((time - 3600) / 60)}:0{time % 60}";
+                        else
+                            displayedTime = $"0{hour + 1}:{(int)((time - 3600) / 60)}:{time % 60}";
+                    }
                 }
                 else
                 {
-                    if (time % 60 < 10)
-                        displayedTime = $"{hour + 1}:{(int)((time - 3600) / 60)}:0{time % 60}";
+                    if ((int)((time - 3600) / 60) < 10)
+                    {
+                        if (time % 60 < 10)
+                            displayedTime = $"{hour + 1}:0{(int)((time - 3600) / 60)}:0{time % 60}";
+                        else
+                            displayedTime = $"{hour + 1}:0{(int)((time - 3600) / 60)}:{time % 60}";
+                    }
                     else
-                        displayedTime = $"{hour + 1}:{(int)((time - 3600) / 60)}:{time % 60}";
+                    {
+                        if (time % 60 < 10)
+                            displayedTime = $"{hour + 1}:{(int)((time - 3600) / 60)}:0{time % 60}";
+                        else
+                            displayedTime = $"{hour + 1}:{(int)((time - 3600) / 60)}:{time % 60}";
+                    }
                 }
             }
+
+            return displayedTime;
         }
 
-        return displayedTime;
-    }
-
-    /// <summary>
-    /// Converts seconds to a string like 'mm:ss' and 'hh:mm:ss' if the seconds count is more than 3600.
-    /// </summary>
-    public static string ElectronicFormat(float time)
-    {
-        return ElectronicFormat((int)time);
-    }
-
-    /// <summary>
-    /// Converts seconds to a string like '_s', '_m _s' if the seconds count is more than 60 and '_h _m _s' if the seconds count is more than 3600.
-    /// </summary>
-    public static string TextFormat(int time)
-    {
-        string displayedTime = "";
-
-        if (time < 60)
+        /// <summary>
+        /// Converts seconds to a string like 'mm:ss' and 'hh:mm:ss' if the seconds count is more than 3600.
+        /// </summary>
+        public static string ElectronicFormat(float time)
         {
-            displayedTime = $"{time}s";
+            return ElectronicFormat((int)time);
         }
-        else if ((time >= 60) && (time < 3600))
-        {
-            if (time % 60 == 0)
-                displayedTime = $"{(int)(time / 60)}m";
-            else
-                displayedTime = $"{(int)(time / 60)}m {time % 60}s";
-        }
-        else if (time >= 3600)
-        {
-            int hour = 0;
 
-            if (time / 3600 > 1)
+        /// <summary>
+        /// Converts seconds to a string like '_s', '_m _s' if the seconds count is more than 60 and '_h _m _s' if the seconds count is more than 3600.
+        /// </summary>
+        public static string TextFormat(int time)
+        {
+            string displayedTime = "";
+
+            if (time < 60)
             {
-                hour = ((int)time / 3600) - 1;
-                time -= (3600 * hour);
+                displayedTime = $"{time}s";
             }
-
-            if ((int)((time - 3600) / 60) == 0)
+            else if ((time >= 60) && (time < 3600))
             {
                 if (time % 60 == 0)
-                    displayedTime = $"{hour + 1}h";
+                    displayedTime = $"{(int)(time / 60)}m";
                 else
-                    displayedTime = $"{hour + 1}h {time % 60}s";
+                    displayedTime = $"{(int)(time / 60)}m {time % 60}s";
             }
-            else
+            else if (time >= 3600)
             {
-                if (time % 60 == 0)
-                    displayedTime = $"{hour + 1}h {(int)((time - 3600) / 60)}m";
+                int hour = 0;
+
+                if (time / 3600 > 1)
+                {
+                    hour = ((int)time / 3600) - 1;
+                    time -= (3600 * hour);
+                }
+
+                if ((int)((time - 3600) / 60) == 0)
+                {
+                    if (time % 60 == 0)
+                        displayedTime = $"{hour + 1}h";
+                    else
+                        displayedTime = $"{hour + 1}h {time % 60}s";
+                }
                 else
-                    displayedTime = $"{hour + 1}h {(int)((time - 3600) / 60)}m {time % 60}s";
+                {
+                    if (time % 60 == 0)
+                        displayedTime = $"{hour + 1}h {(int)((time - 3600) / 60)}m";
+                    else
+                        displayedTime = $"{hour + 1}h {(int)((time - 3600) / 60)}m {time % 60}s";
+                }
             }
+
+            return displayedTime;
         }
 
-        return displayedTime;
-    }
-
-    /// <summary>
-    /// Converts seconds to a string like '_s', '_m _s' if the seconds count is more than 60 and '_h _m _s' if the seconds count is more than 3600.
-    /// </summary>
-    public static string TextFormat(float time)
-    {
-        return TextFormat((int)time);
+        /// <summary>
+        /// Converts seconds to a string like '_s', '_m _s' if the seconds count is more than 60 and '_h _m _s' if the seconds count is more than 3600.
+        /// </summary>
+        public static string TextFormat(float time)
+        {
+            return TextFormat((int)time);
+        }
     }
 }
 
