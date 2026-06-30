@@ -45,7 +45,7 @@
 
 - **SimpleShooting** - this is the code for a simple physical shooting system for your game.
 
-- **SmoothMovementWithRotation** - this script allows you to create a flying game object form one point to another (the original game object also performs a smooth rotation to the target point).
+- **SmoothMovementWithRotation** - this script allows you to create a flying game object from one point to another (the original game object also performs a smooth rotation to the target point).
 
 - **XRGrabInteractableExtra** - use this script instead of the original "XR Grab Interactable" component to control the "grab/drop" and "HoverEnter/HoverExit" processes.
 
