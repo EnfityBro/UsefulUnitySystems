@@ -27,6 +27,8 @@
 
 - **ObjectsConcealer** - contains the **SetRenderingForGameObjectsByLayerIndex** which sets the rendering ability of a game object with a specified layer index.
 
+- **RandomValue** - containes TryGetUnique method which tries to minimize duplication of a random int value from the range [minValue, maxValue).
+
 - **ServiceContainer** - the service container that provides access to work with game services. Addition to the DI architecture of the project.
 
 - **SliderSoundSystem** - this system allows you to control the volume of each type of game sounds. Each type of game sound can contain multiple AudioSources.
@@ -34,8 +36,6 @@
 - **SmoothMovementWithRotation** - this script allows you to create a flying game object from one point to another (the original game object also performs a smooth rotation to the target point).
 
 - **StringTimer** - converter from integer format to "string time" format (you can use this methods for timers or clocks in your game).
-
-- **TryGetUniqueValue** - this method tries to minimize duplication of a random int value from the range [minValue, maxValue).
 
 - **VRCameraOffsetFix** - this script allows you to quickly solve the problem with the incorrect VR camera offset in the game build (this problem was noticed on Oculus Quest 2 due to incorrect settings of the play zone) (for VR games).
 
